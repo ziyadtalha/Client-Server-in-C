@@ -1,9 +1,5 @@
 #include <stdio.h>
-#include <sys/ipc.h>
 #include <sys/shm.h>
-#include <sys/types.h>
-#include <fcntl.h>
-#include <stdlib.h>
 #include <string.h>
 
 int main(int argc, char* argv[])
@@ -29,8 +25,8 @@ int main(int argc, char* argv[])
   //getting data from shared memory
   strncpy(data, ptr, 1024);
 
-  printf(data);
-  printf("\n");
+  printf("Client sent: \n");
+  printf("%s\n", data);
 
   int intCount = 0;
   while (data[intCount] != '\0')
@@ -49,9 +45,9 @@ int main(int argc, char* argv[])
 
   int avg = sum / intCount;
 
-  printf("Sum: %d\n", sum);
+  printf("Sum of numbers: %d\n", sum);
 
-  printf("Average: %d\n", avg);
+  printf("Average of numbers: %d\n", avg);
 
   int unlink_status = shmdt(ptr);
 
